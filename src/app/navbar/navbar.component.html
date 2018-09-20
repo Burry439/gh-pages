@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-md navbar-dark">
+  <a [routerLink]="['/home']" class="navbar-brand">Logo</a>
+  <button class="navbar-toggler" type="button" (click)="collapse == '' ? collapse = 'collapse' : collapse = ''">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div [ngClass]="collapse" class="navbar-collapse">
+      <ul class="navbar-nav ml-auto" >
+          <li class="nav-item">
+              <a [routerLink]="['/home']" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+              <a [routerLink]="['/treatments']" class="nav-link">Treatments</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/articles']" class="nav-link">Articles</a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="['/clinic']" class="nav-link">Clinic/Home</a>
+      </li>
+          <li class="nav-item">
+              <a [routerLink]="['/contact']" class="nav-link">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/about']" class="nav-link">About Me</a>
+        </li>
+      </ul>
+  </div>
+</nav>
+
+
+
