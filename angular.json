@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/acupunture-site",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -119,5 +119,5 @@
       }
     }
   },
-  "defaultProject": "dist"
+  "defaultProject": "acupunture-site"
 }
