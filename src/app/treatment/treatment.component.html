@@ -1,0 +1,57 @@
+<p-dialog header="Title" [(visible)]="display">
+
+  <form  #f="ngForm">
+          <div class="row">
+
+                  <div class="col-md-12">
+                      <div class="form-group form-group-sm">
+                          <label  class="control-label">Treatment Name</label>
+                          <input type="text" class="form-control" name="name" ngModel={{treatment.name}} #name=ngModel id="name" placeholder="Enter Treatment name"  required>
+                      </div>
+                  </div>
+
+                  <div class="col-md-12">
+                      <div class="form-group">
+                          <label  class="control-label">Duration In minutes</label>
+                          <input type="number" class="form-control" name="duration" ngModel={{treatment.duration}} #duration=ngModel id="duration" placeholder="duration" required>
+                      </div>
+                  </div>
+
+                  <div class="col-md-12">
+                      <div class="form-group">
+                          <label  class="control-label">Price</label>
+                          <input type="number" class="form-control" name="price" ngModel={{treatment.price}} #price=ngModel id="price" placeholder="Price" required>
+                      </div>
+                  </div>
+
+          </div>
+          <div class="row">
+               <div class="col-md-12">
+                      <label  class="control-label">Details</label>
+
+                      <textarea class="form-control" placeholder="details" name="details" ngModel={{treatment.details}} #details=ngModel required></textarea>
+                  </div>
+          </div>
+          <div class="row">
+               <div class="col-md-12">
+                      <button [disabled]="!f.valid" type="submit" (click)="confirmEdit()" class="btn btn-primary btn-block" style="margin-top: 30px;">Confirm Edit</button>
+                  </div>
+          </div>
+      </form>
+  
+
+</p-dialog>
+  
+  
+  <div class="card-content single-card">
+      <div class="card-desc">
+          <h3>{{treatment.name}} </h3>
+          <p>{{treatment.details}}</p>
+          <div class="mb-1 text-muted small">Price : {{treatment.price}}</div>
+          <div class="mb-1 text-muted small">Duration : {{treatment.duration}}</div>
+              <a  class="btn btn-primary btn-block" (click)="toTreatment(treatment._id)">Order Now</a>   
+              <a *ngIf="authService.isLoggedIn()" class="btn btn-danger btn-block" (click)="deleteTreatment()">Remove Treatment</a>   
+              <a *ngIf="authService.isLoggedIn()" class="btn btn-info btn-block" (click)="editTreatment()">Edit Treatment</a>   
+
+      </div>
+  </div>

@@ -1,0 +1,58 @@
+<p-messages ></p-messages>
+
+
+
+
+
+<div class="container" *ngIf="treatment">
+        <button class="btn btn-primary"(click)="back()">Back</button>
+
+<h1>{{treatment.name}}</h1>
+<div class="mb-1 text-muted small">Price : {{treatment.price}}</div>
+<div class="mb-1 text-muted small">Duration : {{treatment.duration}}</div>
+
+
+<form role="form" #f="ngForm">
+   <div class="row"  *ngIf="!canPay">
+        <div class="col-md-12">
+
+
+            <div class="form-group">
+                <input  type="text" ngModel #name=ngModel name="name" class="form-control" placeholder="Full Name " value="" required/>
+                <p-message *ngIf="!name.valid && name.touched" severity="error" text="please enter your name"></p-message>
+
+
+            </div>
+            <div class="form-group">
+                <input  type="email" ngModel #email=ngModel name="email" class="form-control" placeholder="Email " value="" required email/>
+                <p-message *ngIf="!email.valid && email.touched" severity="error" text="please enter a valid email"></p-message>
+            </div>
+
+
+
+            <div class="form-group">
+                <input  type="tel" ngModel minlength="10" #phone=ngModel name="phone"  class="form-control" placeholder="Phone Number *" required/>
+                <p-message *ngIf="!phone.valid && phone.touched" severity="error" text="please enter a valid Phone number"></p-message>
+
+            </div>
+            
+
+            <p-calendar  showTime="true" hourFormat="12" [(ngModel)]="time" placeholder="Chose a time" name="time" required> </p-calendar>
+
+
+          
+
+
+            
+
+        </div>
+
+    </div>
+</form>
+
+<div class="form-group" style="margin-top:20px;">
+    <input [disabled]="!f.valid" type="button" name="btnSubmit" class="btn btn-primary" value='{{canPay ? "Go Back" : "continue to checkout"}}' (click)="proccedToPayment()"/>
+</div>
+<app-paypal *ngIf="canPay" (paid)="confirmOrder()" [price]="treatment.price" ></app-paypal>
+
+</div>

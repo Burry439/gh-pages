@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark">
+<nav class="navbar navbar-expand-lg navbar-dark">
   <a [routerLink]="['/home']" class="navbar-brand">Logo</a>
   <button class="navbar-toggler" type="button" (click)="collapse == '' ? collapse = 'collapse' : collapse = ''">
       <span class="navbar-toggler-icon"></span>
@@ -6,22 +6,29 @@
   <div [ngClass]="collapse" class="navbar-collapse">
       <ul class="navbar-nav ml-auto" >
           <li class="nav-item">
-              <a [routerLink]="['/home']" class="nav-link">Home</a>
+              <a [routerLink]="['/home']" class="nav-link" (click)="collapse = 'collapse'">Home</a>
           </li>
           <li class="nav-item">
-              <a [routerLink]="['/treatments']" class="nav-link">Treatments</a>
+              <a [routerLink]="['/treatments']" class="nav-link" (click)="collapse = 'collapse'">Treatments</a>
           </li>
           <li class="nav-item">
-            <a [routerLink]="['/articles']" class="nav-link">Articles</a>
+            <a [routerLink]="['/articles']" class="nav-link" (click)="collapse = 'collapse'">Articles</a>
         </li>
-        <li class="nav-item">
-          <a [routerLink]="['/clinic']" class="nav-link">Clinic/Home</a>
-      </li>
+     
           <li class="nav-item">
-              <a [routerLink]="['/contact']" class="nav-link">Contact Us</a>
+              <a [routerLink]="['/contact']" class="nav-link" (click)="collapse = 'collapse'">Contact Us</a>
           </li>
           <li class="nav-item">
-            <a [routerLink]="['/about']" class="nav-link">About Me</a>
+            <a [routerLink]="['/about']" class="nav-link" (click)="collapse = 'collapse'">About Me</a>
+        </li>
+        <li class="nav-item" *ngIf="authService.isLoggedIn()">
+            <a [routerLink]="['/scheduler']" class="nav-link" (click)="collapse = 'collapse'">Scheduler</a>
+        </li>
+        <li class="nav-item" *ngIf="!authService.isLoggedIn()">
+            <a [routerLink]="['/admin']" class="nav-link" (click)="collapse = 'collapse'">Admin</a>
+        </li>
+        <li *ngIf="authService.isLoggedIn()" class="nav-item">
+            <a  class="nav-link" (click)="logOut()">Log Out</a>
         </li>
       </ul>
   </div>

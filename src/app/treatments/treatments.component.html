@@ -1,3 +1,65 @@
-<p>
-  treatments works!
-</p>
+<section class="details-card">
+  <div class="container">
+
+        <p-dialog header="Title" [(visible)]="display">
+
+                <form  #f="ngForm">
+                        <div class="row">
+
+                                <div class="col-md-12">
+                                    <div class="form-group form-group-sm">
+                                        <label  class="control-label">Treatment Name</label>
+                                        <input type="text" class="form-control" name="name" ngModel #name=ngModel id="name" placeholder="Enter Treatment name" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label  class="control-label">Duration In minutes</label>
+                                        <input type="number" class="form-control" name="duration" ngModel #duration=ngModel id="duration" placeholder="duration" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label  class="control-label">Price</label>
+                                        <input type="number" class="form-control" name="price" ngModel #price=ngModel id="price" placeholder="Price" required>
+                                    </div>
+                                </div>
+
+                        </div>
+                        <div class="row">
+                             <div class="col-md-12">
+                                    <label  class="control-label">Details</label>
+
+                                    <textarea class="form-control" placeholder="details" name="details" ngModel #details=ngModel required></textarea>
+                                </div>
+                        </div>
+                        <div class="row">
+                             <div class="col-md-12">
+                                    <button  [disabled]="!f.valid" type="submit" (click)="addTreatment()" class="btn btn-primary btn-block" style="margin-top: 30px;">Add</button>
+                                </div>
+                        </div>
+                    </form>
+                
+
+            </p-dialog>
+            
+
+            
+
+
+            <button *ngIf="authService.isLoggedIn()" type="text" (click)="showDialog()"  class="btn btn-primary btn-block" style="margin-bottom: 30px;">Add Treatment</button>
+
+
+      <div class="row">
+
+
+          <div class="col-md-4 single-card" *ngFor="let treatment of treatments; let i = index">
+                <app-treatment [treatment]="treatment" (deleteTreatmentEmission)="deleteTreatment(treatment._id, i)" (editTreatmentEmission)="editTreatment($event, i)"></app-treatment>
+          </div>
+
+
+      </div>
+  </div>
+</section>
